@@ -8,9 +8,9 @@ typedef struct Node{
 	
 } NODE;
 
-NODE* head = NULL;
+//NODE* head = NULL;
 
-void print(){
+void print(NODE* head){
 	
 	NODE* temp = head;
 	
@@ -23,16 +23,18 @@ void print(){
 	printf("NULL");
 }
 
-void insert_begin(int d){
+NODE* insert_begin(NODE* head, int d){
 	
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
 	temp->next = head;
 	head = temp;
-	print();
+	print(head);
+	
+	return head;
 }
 
-void insert_end(int d){
+NODE* insert_end(NODE* head, int d){
 	
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
@@ -49,7 +51,9 @@ void insert_end(int d){
 		}
 		t->next = temp;
 	}
-	print();	
+	print(head);
+	
+	return head;	
 		
 }
 
@@ -58,6 +62,7 @@ void insert_end(int d){
 int main() {
 	
 	int i,n,d,c;
+	NODE* head = NULL;
 	printf("Number of inserts: ");
 	scanf("%d",&n);
 	
@@ -71,10 +76,10 @@ int main() {
 		printf("\nEnter number: ");
 		scanf("%d", &d);
 		if(c==1){
-			insert_begin(d);
+			head = insert_begin(head, d);
 		}
 		else{
-			insert_end(d);
+			head = insert_end(head, d);
 		}
 		
 	}
