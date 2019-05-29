@@ -10,12 +10,26 @@ typedef struct Node{
 
 NODE* head = NULL;
 
+void print(){
+	
+	NODE* temp = head;
+	
+	printf("List: ");
+	while(temp!=NULL){
+		
+		printf("%d->",temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+
 void insert_begin(int d){
 	
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
 	temp->next = head;
 	head = temp;
+	print();
 }
 
 void insert_end(int d){
@@ -34,35 +48,36 @@ void insert_end(int d){
 			t = t->next;
 		}
 		t->next = temp;
-	}	
+	}
+	print();	
 		
 }
 
-void print(){
-	
-	NODE* temp = head;
-	
-	while(temp!=NULL){
-		
-		printf("%d->",temp->data);
-		temp = temp->next;
-	}
-	printf("NULL");
-}
+
 
 int main() {
 	
-	int i,n,d;
+	int i,n,d,c;
 	printf("Number of inserts: ");
 	scanf("%d",&n);
 	
+	printf("\nChoose 1 for insert at beginning or 2 for insert at end: ");
+	do{
+		scanf("%d",&c);
+	}while((c!=1)&&(c!=2));
+	
 	for(i=0;i<n;i++){
 		
-		printf("Enter number: ");
+		printf("\nEnter number: ");
 		scanf("%d", &d);
-		insert_end(d);
+		if(c==1){
+			insert_begin(d);
+		}
+		else{
+			insert_end(d);
+		}
+		
 	}
 	
-	print();
 	return 0;
 }
