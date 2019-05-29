@@ -8,17 +8,33 @@ typedef struct Node{
 	
 } NODE;
 
-NODE* head = NULL;
+//NODE* head = NULL;
 
-void insert_begin(int d){
+void print(NODE* head){
+	
+	NODE* temp = head;
+	
+	printf("List: ");
+	while(temp!=NULL){
+		
+		printf("%d->",temp->data);
+		temp = temp->next;
+	}
+	printf("NULL");
+}
+
+NODE* insert_begin(NODE* head, int d){
 	
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
 	temp->next = head;
 	head = temp;
+	print(head);
+	
+	return head;
 }
 
-void insert_end(int d){
+NODE* insert_end(NODE* head, int d){
 	
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
@@ -34,35 +50,39 @@ void insert_end(int d){
 			t = t->next;
 		}
 		t->next = temp;
-	}	
+	}
+	print(head);
+	
+	return head;	
 		
 }
 
-void print(){
-	
-	NODE* temp = head;
-	
-	while(temp!=NULL){
-		
-		printf("%d->",temp->data);
-		temp = temp->next;
-	}
-	printf("NULL");
-}
+
 
 int main() {
 	
-	int i,n,d;
+	int i,n,d,c;
+	NODE* head = NULL;
 	printf("Number of inserts: ");
 	scanf("%d",&n);
 	
+	printf("\nChoose 1 for insert at beginning or 2 for insert at end: ");
+	do{
+		scanf("%d",&c);
+	}while((c!=1)&&(c!=2));
+	
 	for(i=0;i<n;i++){
 		
-		printf("Enter number: ");
+		printf("\nEnter number: ");
 		scanf("%d", &d);
-		insert_end(d);
+		if(c==1){
+			head = insert_begin(head, d);
+		}
+		else{
+			head = insert_end(head, d);
+		}
+		
 	}
 	
-	print();
 	return 0;
 }
