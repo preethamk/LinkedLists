@@ -28,6 +28,7 @@ NODE* insert_begin(NODE* head, int d){
 	NODE* temp = (NODE*) malloc(sizeof(NODE));
 	temp->data = d;
 	temp->next = head;
+	
 	head = temp;
 	print(head);
 	
@@ -69,6 +70,12 @@ int main() {
 	printf("\nChoose 1 for insert at beginning or 2 for insert at end: ");
 	do{
 		scanf("%d",&c);
+		if(c==1){
+			printf("\nInsert at beginning selected\n");
+		}
+		else if(c==2){
+			printf("\nInsert at end selected\n");
+		}
 	}while((c!=1)&&(c!=2));
 	
 	for(i=0;i<n;i++){
